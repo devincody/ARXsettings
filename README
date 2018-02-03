@@ -1,0 +1,4 @@
+Welcome.
+
+This project was developed specifically to assist in controlling 16 channel ARX boards.
+The library abstracts away many complicated bit manipulations and allows the user to focus on tests of the ARX board.
