@@ -33,7 +33,6 @@ void setFilter(int channel, filter_t setting);
 
 #### Setting all channels
 The following methods will change the setting for all channels
-
 ```c++
 void setAt1_all(int setting);
 void setAt2_all(int setting);
@@ -60,16 +59,17 @@ Open>libraries>ARXsettings
 
 ### FAQ\*
 
+\* These questions have never actually been asked
+
 #### What is an Arduino?
-Arduino is a family of microcontrollers which has been designed to facilitate the development of embedded solutions.
+[Arduino](https://www.arduino.cc/) is a family of microcontrollers which has been designed to facilitate the development of embedded solutions.
 
 #### Why doesn't the IDE see my Arduino?
-There are many potential reasons for this, and many reasons are discussed in depth elsewhere. For the Arduinos in the Weinreb lab, the reason *might* be that your computer doesn't yet have the driver required to use the CH34X serial-USB chip on these boards. Follow the download instructions on [this website](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html)
+There are many potential reasons for this and many reasons are discussed in depth elsewhere. For the Arduinos in the Weinreb lab, the reason *might* be that your computer doesn't yet have the driver required to use the CH34X serial-USB chip on these boards. Follow the download instructions on [this website](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html).
 
 #### Where is the GUI?
 The GUI has not yet been included with this github package. Future revisions will include the GUI.
 
-\* These questions have never actually been asked
 
 ### More Questions?
 Talk to Devin
