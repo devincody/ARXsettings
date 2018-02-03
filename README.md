@@ -1,5 +1,3 @@
-# ARXsettings
-
 ## Welcome.
 
 ### Purpose
@@ -16,6 +14,9 @@ If you don't have it already, download the Arduino IDE [here](https://www.arduin
 Open the Arduino IDE. Go to Sketch>Include Library>Add .ZIP Library. Browse to your download location and select your file.
 
 Follow the instructions on [this website](https://www.baldengineer.com/installing-arduino-library-from-github.html) if you still have quesitons.
+### Overview
+
+Broadly speaking, the methods are split into three categories. The first category is for configuring a single ARX channel. The second is for configuring all ARX channels simultaneously and the last category is the initialization and execution methods.
 
 ### Examples
 
