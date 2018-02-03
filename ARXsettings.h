@@ -38,19 +38,6 @@ class ARXsetting{
 		//Slave select pin
 		int NCS = 10;
 
-	public:
-
-		typedef enum{
-			SPLIT,
-			REDUCED,
-			THRU,
-			BLOCKED
-		} filter_t;
-
-		ARXsetting();
-
-		void setCS(int ncs);
-
 		//ARX Register Setters
 		void setReg1(int channel, byte setting);
 		void setReg2(int channel, byte setting);
@@ -60,6 +47,31 @@ class ARXsetting{
 		byte getReg1(int channel);
 		byte getReg2(int channel);
 		byte getReg3(int channel);
+
+		//Send via SPI
+		void sendReg1();
+		void sendReg2();
+		void sendReg3();
+
+		//SPI Base Methods
+		void writeRegister(byte thisRegister, byte thisValue);
+		void write8(byte reg, byte val);
+		void write8_diff(byte reg, byte val[]);
+		void init_ARX_reg();
+
+	public:
+
+		typedef enum{
+			SPLIT,
+			REDUCED,
+			THRU,
+			BLOCKED
+		} filter_t;
+
+		//Initialization
+		ARXsetting();
+		void init();
+		void setCS(int ncs);
 
 		//ARX Attenuator Settings
 		void setAt1(int channel, int setting);
@@ -80,23 +92,11 @@ class ARXsetting{
 		void setFilter_all(filter_t setting);
 
 		//SPI ARX Methods
-		void sendReg1();
-		void sendReg2();
-		void sendReg3();
 		void sendReg_all();
-
-		//SPI Base Methods
-		void writeRegister(byte thisRegister, byte thisValue);
-		void write8(byte reg, byte val);
-		void write8_diff(byte reg, byte val[]);
-		void init();
-		void init_ARX_reg();
 
 		//Printing Methods
 		void printreg(int reg); //one indexed
 		void print_all();
-
-
 };
 
 
