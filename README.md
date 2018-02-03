@@ -1,3 +1,5 @@
+# ARXsettings
+
 ## Welcome.
 
 ### Purpose
@@ -9,13 +11,11 @@ The library abstracts away many complicated bit manipulations and allows the use
 
 Download the repository as a .zip file by clicking the "Clone or Download" button.
 
-If you don't have it already, download the Arduino IDE here: https://www.arduino.cc/en/Main/Software
+If you don't have it already, download the Arduino IDE [here](https://www.arduino.cc/en/Main/Software)
 
 Open the Arduino IDE. Go to Sketch>Include Library>Add .ZIP Library. Browse to your download location and select your file.
 
-Follow the instructions on this website if you still have quesitons:
-https://www.baldengineer.com/installing-arduino-library-from-github.html
-
+Follow the instructions on [this website](https://www.baldengineer.com/installing-arduino-library-from-github.html) if you still have quesitons.
 
 ### Examples
 
