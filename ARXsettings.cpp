@@ -1,9 +1,15 @@
+/********************************************************           
+* ARXsettings.c: Implements the ARXsetting Class	    *   
+*                                                       *   
+* Author:  Devin Cody                                   *   
+*                                                       *   
+* Date:  February 2, 2018                               *   
+********************************************************/  
+
 #include <ARXsettings.h>
-#include "SPI.h"
 
 
 void printHex(int num, int precision);
-
 
 ARXsetting::ARXsetting(){}
 
@@ -100,30 +106,44 @@ void ARXsetting::setAts(int channel, int setting){
 }
 
 void ARXsetting::setAt1_all(int setting){
+	/*
+	Set AT1 for all channels
+	*/
 	for (int i = 0; i < NCHAN; i++){
 		setAt1(i, setting);
 	}
 }
 
 void ARXsetting::setAt2_all(int setting){
+	/*
+	Set AT2 for all channels
+	*/
 	for (int i = 0; i < NCHAN; i++){
 		setAt2(i, setting);
 	}
 }
 
 void ARXsetting::setAts_all(int setting){
+	/*
+	Set ATS for all channels
+	*/
 	for (int i = 0; i < NCHAN; i++){
 		setAts(i, setting);
 	}
 }
 
 void ARXsetting::setFEE(int channel, bool setting){
+	/*
+	Set FEE for channel A and channel B
+	*/
 	setFEE_A(channel, setting);
 	setFEE_B(channel, setting);
 }
 
 void ARXsetting::setFEE_A(int channel, bool setting){
-	// byte za[] = {0x10}; // FEE A
+	/*
+	Set FEEA for one channel
+	*/
 	byte pattern = 0x10;
 	byte reg = getReg1(channel);
 	if (setting){
@@ -134,7 +154,9 @@ void ARXsetting::setFEE_A(int channel, bool setting){
 }
 
 void ARXsetting::setFEE_B(int channel, bool setting){
-	// byte za[] = {0x20}; // FEE B
+	/*
+	Set FEEB for one channel
+	*/
 	byte pattern = 0x20;
 	byte reg = getReg1(channel);
 	if (setting){
@@ -177,6 +199,9 @@ void ARXsetting::setFilter(int channel, filter_t setting){
 }
 
 void ARXsetting::setFilter_all(filter_t setting){
+	/*
+	Set Filters for all channels
+	*/
 	for (int i =0; i < NCHAN; i++){
 		setFilter(i, setting);
 	}
@@ -184,6 +209,9 @@ void ARXsetting::setFilter_all(filter_t setting){
 
 
 void ARXsetting::printreg(int reg){
+	/*
+	Print Registers for all channels
+	*/
 	for (int i =0; i < 8; i++){
 		switch(reg){
 		case 1:

@@ -1,15 +1,22 @@
+/********************************************************           
+* ARXsettings.h:  Header file for ARXsettings.cpp file  *   
+*                                                       *   
+* Author:  Devin Cody                                   *   
+*                                                       *   
+* Date:  February 2, 2018                               *   
+********************************************************/  
+
+
 #ifndef __ARXsett__
 #define __ARXsett__
 
 
 #include "Arduino.h"
-//#include "SPI.h"
+#include <SPI.h>
 #include <math.h>
 
 #define _MK(x,y) ((x & (1 << y))>0)
 #define NCHAN 8
-
-
 
 
 class ARXsetting{
@@ -25,8 +32,10 @@ class ARXsetting{
 		int at2[4] = {0,2,3,1};
 		int ats[4] = {0,3,2,1};
 
+		//Variable to ensure spi initialization
 		bool SPI_INIT = false;
 
+		//Slave select pin
 		int NCS = 10;
 
 	public:
