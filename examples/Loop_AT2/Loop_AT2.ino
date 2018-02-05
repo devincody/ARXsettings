@@ -18,7 +18,7 @@ void setup(){
   Serial.begin(9600);        //Must be included for ARXsetting::print_all() to work
   brd1.init();               //Initialize SPI and send IO intialization commands
   brd1.setAt1_all(0);        //Set the value of At1 for all channels
-  brd1.setAts_all(30);       //Set the value of At2 for all channels
+  brd1.setAts_all(30);       //Set the value of Ats for all channels
   brd1.print_all();          //Prints hex values for all registers
 }
 
