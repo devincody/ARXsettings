@@ -8,7 +8,7 @@ The library abstracts away many complicated bit manipulations and allows the use
 
 ### Give me the code!
 
-Download the repository as a .zip file by clicking the "Clone or Download" button.
+Download the repository as a .zip file by clicking the green "Clone or Download" button in the upper righthand corner of the github homepage.
 
 If you don't have it already, download the Arduino IDE [here](https://www.arduino.cc/en/Main/Software)
 
@@ -57,6 +57,8 @@ void print_all();
 Once the library is downloaded, you can find the examples in the Arduino IDE at:
 
 Open>libraries>ARXsettings
+
+Click on an example to open it. Once the example is open, the Arduino IDE will display the example code. Ensure that the code will be compiled for the correct board and the correct USB port is selected by choosing the correct options from the drop-down menus at Tools>Board: and Tools>Port. Finally compile and upload the code to Arduino using the right-arrow button in the upper-left corner of the Arduino IDE.
 
 ### FAQ\*
 
