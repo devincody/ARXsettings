@@ -29,7 +29,7 @@ void setFEE(int channel, bool setting);         // channel: [1-8], setting: true
 void setFEE_A(int channel, bool setting);
 void setFEE_B(int channel, bool setting);
 void setFilter(int channel, filter_t setting);  // channel: [1-8], setting: SPLIT, BLOCKED, THRU, REDUCED
-                                                // settings must be prefixed by ARXsetting:: (i.e. ARXsetting::SPLIT)
+                                                // settings must be prefixed by ARXsetting:: (e.g. ARXsetting::SPLIT)
 ```
 
 #### Setting all channels
