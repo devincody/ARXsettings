@@ -64,7 +64,7 @@ void ARXsetting::setAt1(int channel, int setting){
 	used instead of 3 because we want to write in the first byte.
 	*/
 	
-	byte ans = getReg2(channel);
+	byte ans = getReg2(_CH(channel));
 	byte mask = 0xF0;
 	ans &= ~mask; // clear out bits
 
@@ -72,8 +72,9 @@ void ARXsetting::setAt1(int channel, int setting){
 		ans |= ( _MK(setting, 4-i) << (7-at1[i]) ) & mask;
 
 	Serial.print("setting = ");
-	printHex(ans, 2);
-	setReg2(channel, ans);
+	Serial.println(_CH(channel));
+	//printHex(ans, 2);
+	setReg2(_CH(channel), ans);
 }
 void ARXsetting::setAt2(int channel, int setting){
 	/*
@@ -82,12 +83,12 @@ void ARXsetting::setAt2(int channel, int setting){
 	Bits in locations: 0x0000 1111 of register 2
 	*/
 	
-	byte ans = getReg2(channel);
+	byte ans = getReg2(_CH(channel));
 	byte mask = 0x0F;
 	ans &= ~mask; // clear out bits
 	for (int i = 0; i < 4; i ++)
 		ans |= ( _MK(setting, 4-i) << (3-at2[i]) ) & mask;
-	setReg2(channel, ans);
+	setReg2(_CH(channel), ans);
 }
 
 void ARXsetting::setAts(int channel, int setting){
@@ -97,19 +98,19 @@ void ARXsetting::setAts(int channel, int setting){
 	Bits in locations: 0x0000 1111 of register 3
 	*/
 	
-	byte ans = getReg3(channel);
+	byte ans = getReg3(_CH(channel));
 	byte mask = 0x0F;
 	ans &= ~mask; // clear out bits
 	for (int i = 0; i < 4; i ++)
 		ans |= ( _MK(setting, 4-i) << (3-ats[i]) ) & mask;
-	setReg3(channel, ans);
+	setReg3(_CH(channel), ans);
 }
 
 void ARXsetting::setAt1_all(int setting){
 	/*
 	Set AT1 for all channels
 	*/
-	for (int i = 0; i < NCHAN; i++){
+	for (int i = 1; i <= NCHAN; i++){
 		setAt1(i, setting);
 	}
 }
@@ -118,7 +119,7 @@ void ARXsetting::setAt2_all(int setting){
 	/*
 	Set AT2 for all channels
 	*/
-	for (int i = 0; i < NCHAN; i++){
+	for (int i = 1; i <= NCHAN; i++){
 		setAt2(i, setting);
 	}
 }
@@ -127,7 +128,7 @@ void ARXsetting::setAts_all(int setting){
 	/*
 	Set ATS for all channels
 	*/
-	for (int i = 0; i < NCHAN; i++){
+	for (int i = 1; i <= NCHAN; i++){
 		setAts(i, setting);
 	}
 }
@@ -145,11 +146,11 @@ void ARXsetting::setFEE_A(int channel, bool setting){
 	Set FEEA for one channel
 	*/
 	byte pattern = 0x10;
-	byte reg = getReg1(channel);
+	byte reg = getReg1(_CH(channel));
 	if (setting){
-		setReg1(channel, reg | pattern);
+		setReg1(_CH(channel), reg | pattern);
 	} else {
-		setReg1(channel, reg & ~pattern);
+		setReg1(_CH(channel), reg & ~pattern);
 	}
 }
 
@@ -158,16 +159,16 @@ void ARXsetting::setFEE_B(int channel, bool setting){
 	Set FEEB for one channel
 	*/
 	byte pattern = 0x20;
-	byte reg = getReg1(channel);
+	byte reg = getReg1(_CH(channel));
 	if (setting){
-		setReg1(channel, reg | pattern);
+		setReg1(_CH(channel), reg | pattern);
 	} else {
-		setReg1(channel, reg & ~pattern);
+		setReg1(_CH(channel), reg & ~pattern);
 	}
 }
 
 void ARXsetting::setFEE_all(bool setting){
-	for (int i =0; i < NCHAN; i++){
+	for (int i = 1; i <= NCHAN; i++){
 		setFEE(i, setting);
 	}
 }
@@ -179,21 +180,21 @@ void ARXsetting::setFilter(int channel, filter_t setting){
 	// 0xC0 == blocked
 	// 0x00 == split
 	byte mask = 0xC0;
-	byte reg = getReg1(channel);
+	byte reg = getReg1(_CH(channel));
 	reg &= ~mask; // clear out bits
 
 	switch(setting){
 		case (SPLIT):
-			setReg1(channel, reg | (0x00 & mask));
+			setReg1(_CH(channel), reg | (0x00 & mask));
 			break;
 		case (REDUCED):
-			setReg1(channel, reg | (0x80 & mask));
+			setReg1(_CH(channel), reg | (0x80 & mask));
 			break;
 		case (THRU):
-			setReg1(channel, reg | (0x40 & mask));
+			setReg1(_CH(channel), reg | (0x40 & mask));
 			break;
 		case (BLOCKED):
-			setReg1(channel, reg | (0xC0 & mask));
+			setReg1(_CH(channel), reg | (0xC0 & mask));
 			break;
 	}
 }
@@ -202,7 +203,7 @@ void ARXsetting::setFilter_all(filter_t setting){
 	/*
 	Set Filters for all channels
 	*/
-	for (int i =0; i < NCHAN; i++){
+	for (int i =1; i <= NCHAN; i++){
 		setFilter(i, setting);
 	}
 }
@@ -275,7 +276,7 @@ void ARXsetting::sendReg_all(){
 void ARXsetting::write8(byte reg, byte val){
   digitalWrite(NCS, LOW);
  
-  for (int i = 0; i < 8; i++){
+  for (int i = 0; i < NCHAN; i++){
     writeRegister(reg, val);
   }
   digitalWrite(NCS, HIGH);
@@ -283,14 +284,14 @@ void ARXsetting::write8(byte reg, byte val){
 
 void ARXsetting::write8_diff(byte reg, byte val[]){
   digitalWrite(NCS, LOW);
-  for (int i = 0; i < 8; i++){
+  for (int i = 0; i < NCHAN; i++){
     writeRegister(reg, val[i]);
   }
   digitalWrite(NCS, HIGH);
 }
 
 void ARXsetting::init(){
-	SPI.beginTransaction(SPISettings(62000, MSBFIRST,SPI_MODE0));
+	SPI.beginTransaction(SPISettings(BAUD, MSBFIRST,SPI_MODE0));
 	SPI.begin();
 	Serial.println("SPI Initialized");
 	SPI_INIT = true;

@@ -14,9 +14,12 @@
 #include "Arduino.h"
 #include <SPI.h>
 #include <math.h>
+#include <assert.h>
 
 #define _MK(x,y) ((x & (1 << y))>0)
+#define _CH(x) (8-x)
 #define NCHAN 8
+#define BAUD 62000
 
 
 class ARXsetting{
