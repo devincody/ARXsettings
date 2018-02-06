@@ -22,13 +22,14 @@ Broadly speaking, the methods are split into three categories. The first categor
 #### Setting a signal channel
 The following methods will change the setting for a single channel.
 ```c++
-void setAt1(int channel, int setting);
+void setAt1(int channel, int setting);          // channel: [1-8], setting: [0-30]
 void setAt2(int channel, int setting);
 void setAts(int channel, int setting);
-void setFEE(int channel, bool setting);
+void setFEE(int channel, bool setting);         // channel: [1-8], setting: true/false
 void setFEE_A(int channel, bool setting);
 void setFEE_B(int channel, bool setting);
-void setFilter(int channel, filter_t setting);
+void setFilter(int channel, filter_t setting);  // channel: [1-8], setting: SPLIT, BLOCKED, THRU, REDUCED
+                                                // settings must be prefixed by ARXsetting:: (i.e. ARXsetting::SPLIT)
 ```
 
 #### Setting all channels
@@ -45,9 +46,9 @@ void setFilter_all(filter_t setting);
 The following commands control the *flow* of information
 ```c++
 void init();
-void setCS(int ncs);
-void sendReg_all();
-void printreg(int reg); //one indexed
+void setCS(int ncs);        //set the chip select pin
+void sendReg_all();         //sends data via spi
+void printreg(int reg);     //one indexed
 void print_all();
 ```
     
