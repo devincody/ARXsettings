@@ -10,11 +10,11 @@
 #ifndef __ARXsett__
 #define __ARXsett__
 
+//#define __ASSERT_USE_STDERR
 
 #include "Arduino.h"
 #include <SPI.h>
 #include <math.h>
-#include <assert.h>
 
 #define _MK(x,y) ((x & (1 << y))>0)
 #define _CH(x) (8-x)

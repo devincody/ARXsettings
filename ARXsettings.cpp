@@ -10,6 +10,8 @@
 
 
 void printHex(int num, int precision);
+void assert(bool TF);
+
 
 ARXsetting::ARXsetting(){}
 
@@ -63,7 +65,10 @@ void ARXsetting::setAt1(int channel, int setting){
 	macro will be stored in the register's storage. Here, 7 is 
 	used instead of 3 because we want to write in the first byte.
 	*/
-	
+
+	assert(channel < 9 && channel > 0);
+	assert(setting < 31 && setting > 0);
+
 	byte ans = getReg2(_CH(channel));
 	byte mask = 0xF0;
 	ans &= ~mask; // clear out bits
@@ -71,8 +76,8 @@ void ARXsetting::setAt1(int channel, int setting){
 	for (int i = 0; i < 4; i ++)
 		ans |= ( _MK(setting, 4-i) << (7-at1[i]) ) & mask;
 
-	Serial.print("setting = ");
-	Serial.println(_CH(channel));
+	//Serial.print("setting = ");
+	//Serial.println(_CH(channel));
 	//printHex(ans, 2);
 	setReg2(_CH(channel), ans);
 }
@@ -82,7 +87,9 @@ void ARXsetting::setAt2(int channel, int setting){
 
 	Bits in locations: 0x0000 1111 of register 2
 	*/
-	
+	assert(channel < 9 && channel > 0);
+	assert(setting < 31 && setting > 0);
+
 	byte ans = getReg2(_CH(channel));
 	byte mask = 0x0F;
 	ans &= ~mask; // clear out bits
@@ -97,7 +104,9 @@ void ARXsetting::setAts(int channel, int setting){
 
 	Bits in locations: 0x0000 1111 of register 3
 	*/
-	
+	assert(channel < 9 && channel > 0);
+	assert(setting < 31 && setting > 0);
+
 	byte ans = getReg3(_CH(channel));
 	byte mask = 0x0F;
 	ans &= ~mask; // clear out bits
@@ -110,6 +119,8 @@ void ARXsetting::setAt1_all(int setting){
 	/*
 	Set AT1 for all channels
 	*/
+	assert(setting < 31 && setting > 0);
+
 	for (int i = 1; i <= NCHAN; i++){
 		setAt1(i, setting);
 	}
@@ -119,6 +130,8 @@ void ARXsetting::setAt2_all(int setting){
 	/*
 	Set AT2 for all channels
 	*/
+	assert(setting < 31 && setting > 0);
+
 	for (int i = 1; i <= NCHAN; i++){
 		setAt2(i, setting);
 	}
@@ -128,6 +141,8 @@ void ARXsetting::setAts_all(int setting){
 	/*
 	Set ATS for all channels
 	*/
+	assert(setting < 31 && setting > 0);
+
 	for (int i = 1; i <= NCHAN; i++){
 		setAts(i, setting);
 	}
@@ -137,6 +152,7 @@ void ARXsetting::setFEE(int channel, bool setting){
 	/*
 	Set FEE for channel A and channel B
 	*/
+
 	setFEE_A(channel, setting);
 	setFEE_B(channel, setting);
 }
@@ -145,6 +161,8 @@ void ARXsetting::setFEE_A(int channel, bool setting){
 	/*
 	Set FEEA for one channel
 	*/
+	assert(channel < 9 && channel > 0);
+
 	byte pattern = 0x10;
 	byte reg = getReg1(_CH(channel));
 	if (setting){
@@ -158,6 +176,8 @@ void ARXsetting::setFEE_B(int channel, bool setting){
 	/*
 	Set FEEB for one channel
 	*/
+	assert(channel < 9 && channel > 0);
+
 	byte pattern = 0x20;
 	byte reg = getReg1(_CH(channel));
 	if (setting){
@@ -179,6 +199,8 @@ void ARXsetting::setFilter(int channel, filter_t setting){
 	// 0x40 == thru
 	// 0xC0 == blocked
 	// 0x00 == split
+	assert(channel < 9 && channel > 0);
+
 	byte mask = 0xC0;
 	byte reg = getReg1(_CH(channel));
 	reg &= ~mask; // clear out bits
@@ -213,6 +235,7 @@ void ARXsetting::printreg(int reg){
 	/*
 	Print Registers for all channels
 	*/
+
 	for (int i =0; i < 8; i++){
 		switch(reg){
 		case 1:
@@ -335,6 +358,16 @@ void printHex(int num, int precision) {
 
 	sprintf(tmp, format, num);
 	Serial.print(tmp);
+}
+
+void assert(bool TF){
+	if(!TF){
+		Serial.println("Invalid Parameter");
+		Serial.println("Program will not execute as intended");
+		Serial.println("Aborting");
+		Serial.flush();
+		exit(1);
+	}
 }
 
 
