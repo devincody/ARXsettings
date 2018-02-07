@@ -78,4 +78,4 @@ The GUI has not yet been included with this github package. Future revisions wil
 
 
 ### More Questions?
-Talk to Devin (dcody at caltech.edu)
+Talk to Devin (dcody (http://www.text2image.com/user_images/text2image_H96543_20180207_083523.jpg) caltech.edu)
