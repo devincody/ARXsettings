@@ -31,7 +31,7 @@ void setFEE_B(int channel, bool setting);
 void setFilter(int channel, filter_t setting);
 ```
 
-Here channel is an integer betwen 1 and 8 inclusive which denotes the channel on which the setting will be applied. For the first three commands, setting is an even integer between 0 and 30. For the FEE commands, setting is a boolean value, true or false and for the Filter command, setting is one of four values which have type filter_t, namely, ARXsetting::SPLIT, ARXsetting::THRU, ARXsetting::BLOCKED, and ARXsetting::REDUCED.
+Hints: Here channel is an integer betwen 1 and 8 inclusive which denotes the channel on which the setting will be applied. For the first three commands, setting is an even integer between 0 and 30. For the FEE commands, setting is a boolean value, true or false and for the Filter command, setting is one of four values which have type filter_t, namely, ARXsetting::SPLIT, ARXsetting::THRU, ARXsetting::BLOCKED, and ARXsetting::REDUCED.
 
 #### Setting all channels
 The following methods will change the setting for all channels
@@ -53,7 +53,7 @@ void printreg(int reg);
 void print_all();
 ```
 
-The init() command initializes the SPI bus and must be called in every program. The chip select or slave select pin can be selected using the setCS() command. To update the ARX board state, use the sendReg_all() command. The print commands print out one or all of the registers.
+Hints: The init() command initializes the SPI bus and must be called in every program. The chip select or slave select pin can be selected using the setCS() command. To update the ARX board state, use the sendReg_all() command. The print commands print out one or all of the registers.
 
 ### Examples
 
@@ -78,4 +78,4 @@ The GUI has not yet been included with this github package. Future revisions wil
 
 
 ### More Questions?
-Talk to Devin
+Talk to Devin (dcody at caltech.edu)
