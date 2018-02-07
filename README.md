@@ -22,15 +22,16 @@ Broadly speaking, the methods are split into three categories. The first categor
 #### Setting a signal channel
 The following methods will change the setting for a single channel.
 ```c++
-void setAt1(int channel, int setting);          // channel: [1-8], setting: [0-30]
+void setAt1(int channel, int setting);
 void setAt2(int channel, int setting);
 void setAts(int channel, int setting);
-void setFEE(int channel, bool setting);         // channel: [1-8], setting: true/false
+void setFEE(int channel, bool setting);
 void setFEE_A(int channel, bool setting);
 void setFEE_B(int channel, bool setting);
-void setFilter(int channel, filter_t setting);  // channel: [1-8], setting: SPLIT, BLOCKED, THRU, REDUCED
-                                                // settings must be prefixed by ARXsetting:: (e.g. ARXsetting::SPLIT)
+void setFilter(int channel, filter_t setting);
 ```
+
+Here channel is an integer betwen 1 and 8 inclusive which denotes the channel on which the setting will be applied. For the first three commands, setting is an even integer between 0 and 30. For the FEE commands, setting is a boolean value, true or false and for the Filter command, setting is one of four values which have type filter_t, namely, ARXsetting::SPLIT, ARXsetting::THRU, ARXsetting::BLOCKED, and ARXsetting::REDUCED.
 
 #### Setting all channels
 The following methods will change the setting for all channels
@@ -46,12 +47,14 @@ void setFilter_all(filter_t setting);
 The following commands control the *flow* of information
 ```c++
 void init();
-void setCS(int ncs);        //set the chip select pin
-void sendReg_all();         //sends data via spi
-void printreg(int reg);     //one indexed
+void setCS(int ncs); 
+void sendReg_all();
+void printreg(int reg);
 void print_all();
 ```
-    
+
+The init() command initializes the SPI bus and must be called in every program. The chip select or slave select pin can be selected using the setCS() command. To update the ARX board state, use the sendReg_all() command. The print commands print out one or all of the registers.
+
 ### Examples
 
 Once the library is downloaded, you can find the examples in the Arduino IDE at:
