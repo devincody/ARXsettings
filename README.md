@@ -65,7 +65,7 @@ Click on an example to open it. Once the example is open, the Arduino IDE will d
 
 ### FAQ\*
 
-\* These questions have never actually been asked
+\* No one has ever actually asked me these questions
 
 #### What is an Arduino?
 [Arduino](https://www.arduino.cc/) is a family of microcontrollers which has been designed to facilitate the development of embedded solutions.
