@@ -167,7 +167,7 @@ bool SetupSerialUI() {
 	
 	if( ! topMenu->addRequest(
 		&(MyInputs.ChannelNumber),
-		SUI_STR("Channel Number"),
+		SUI_STR("Path Number"),
 		SUI_STR("Which channel do you want to update?"),
 		MainMenu::ChannelNumberChanged)) {
 		MySUI.returnError(CouldntAddItemErr);
@@ -175,15 +175,15 @@ bool SetupSerialUI() {
 	}
 	
 	if( ! topMenu->addCommand(
-		SUI_STR("Update Channel"),
+		SUI_STR("Store Single Path"),
 		MainMenu::doUpdateChannel,
-		SUI_STR("Updates Single Channel and Transmits"))) {
+		SUI_STR("Saves in Single Channel"))) {
 		MySUI.returnError(CouldntAddItemErr);
 		return false;
 	}
 	
 	if( ! topMenu->addCommand(
-		SUI_STR("Update All Channels"),
+		SUI_STR("Store All Paths"),
 		MainMenu::doUpdateAllChannels,
 		SUI_STR("Saves info for all channels"))) {
 		MySUI.returnError(CouldntAddItemErr);
@@ -191,9 +191,9 @@ bool SetupSerialUI() {
 	}
 	
 	if( ! topMenu->addCommand(
-		SUI_STR("Send to All Channels"),
+		SUI_STR("Send to All Paths"),
 		MainMenu::doSendToAllChannels,
-		SUI_STR("Updates all Channels with configuration"))) {
+		SUI_STR("Sends stored information to all paths"))) {
 		MySUI.returnError(CouldntAddItemErr);
 		return false;
 	}
