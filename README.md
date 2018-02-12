@@ -8,7 +8,7 @@ The library abstracts away many complicated bit manipulations and allows the use
 
 ### Give me the code!
 
-Download the repository as a .zip file by clicking the "Clone or Download" button.
+Download the repository as a .zip file by clicking the green "Clone or Download" button in the upper righthand corner of the github homepage.
 
 If you don't have it already, download the Arduino IDE [here](https://www.arduino.cc/en/Main/Software)
 
@@ -22,15 +22,16 @@ Broadly speaking, the methods are split into three categories. The first categor
 #### Setting a signal channel
 The following methods will change the setting for a single channel.
 ```c++
-void setAt1(int channel, int setting);          // channel: [1-8], setting: [0-30]
+void setAt1(int channel, int setting);
 void setAt2(int channel, int setting);
 void setAts(int channel, int setting);
-void setFEE(int channel, bool setting);         // channel: [1-8], setting: true/false
+void setFEE(int channel, bool setting);
 void setFEE_A(int channel, bool setting);
 void setFEE_B(int channel, bool setting);
-void setFilter(int channel, filter_t setting);  // channel: [1-8], setting: SPLIT, BLOCKED, THRU, REDUCED
-                                                // settings must be prefixed by ARXsetting:: (e.g. ARXsetting::SPLIT)
+void setFilter(int channel, filter_t setting);
 ```
+
+Hints: Here channel is an integer betwen 1 and 8 inclusive which denotes the channel on which the setting will be applied. For the first three commands, setting is an even integer between 0 and 30. For the FEE commands, setting is a boolean value, true or false and for the Filter command, setting is one of four values which have type filter_t, namely, ARXsetting::SPLIT, ARXsetting::THRU, ARXsetting::BLOCKED, and ARXsetting::REDUCED.
 
 #### Setting all channels
 The following methods will change the setting for all channels
@@ -46,21 +47,25 @@ void setFilter_all(filter_t setting);
 The following commands control the *flow* of information
 ```c++
 void init();
-void setCS(int ncs);        //set the chip select pin
-void sendReg_all();         //sends data via spi
-void printreg(int reg);     //one indexed
+void setCS(int ncs); 
+void sendReg_all();
+void printreg(int reg);
 void print_all();
 ```
-    
+
+Hints: The init() command initializes the SPI bus and must be called in every program. The chip select or slave select pin can be selected using the setCS() command. To update the ARX board state, use the sendReg_all() command. The print commands print out one or all of the registers.
+
 ### Examples
 
 Once the library is downloaded, you can find the examples in the Arduino IDE at:
 
 Open>libraries>ARXsettings
 
+Click on an example to open it. Once the example is open, the Arduino IDE will display the example code. Ensure that the code will be compiled for the correct board and the correct USB port is selected by choosing the correct options from the drop-down menus at Tools>Board: and Tools>Port. Finally compile and upload the code to Arduino using the right-arrow button in the upper-left corner of the Arduino IDE.
+
 ### FAQ\*
 
-\* These questions have never actually been asked
+\* No one has ever actually asked me these questions
 
 #### What is an Arduino?
 [Arduino](https://www.arduino.cc/) is a family of microcontrollers which has been designed to facilitate the development of embedded solutions.
@@ -73,4 +78,4 @@ The GUI has not yet been included with this github package. Future revisions wil
 
 
 ### More Questions?
-Talk to Devin
+Talk to Devin (dcody at caltech.edu)
