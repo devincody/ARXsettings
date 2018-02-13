@@ -86,7 +86,7 @@ ARXsetting brd;
 namespace MainMenu {
   
 void doINITSPI(){
-    brd.init_SPI();
+    brd.init();
 }
 
 
