@@ -51,7 +51,7 @@
  * Our SerialUI Instance, through which we can send/receive
  * data from users. Actually instantiated here, for global use.
  */
-SUI::SerialUI MySUI(11);
+SUI::SerialUI MySUI(10);
 
 
 /*
@@ -190,13 +190,13 @@ bool SetupSerialUI() {
 		return false;
 	}
 	
-	if( ! topMenu->addCommand(
-		SUI_STR("Send to All Paths"),
-		MainMenu::doSendToAllChannels,
-		SUI_STR("Sends stored information to all paths"))) {
-		MySUI.returnError(CouldntAddItemErr);
-		return false;
-	}
+	// if( ! topMenu->addCommand(
+	// 	SUI_STR("Send to All Paths"),
+	// 	MainMenu::doSendToAllChannels,
+	// 	SUI_STR("Sends stored information to all paths"))) {
+	// 	MySUI.returnError(CouldntAddItemErr);
+	// 	return false;
+	// }
 	SUI::Menu * submen1 = topMenu->subMenu(
 		SUI_STR("Advanced"),
 		SUI_STR("Additional Options"));

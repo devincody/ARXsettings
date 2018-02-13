@@ -173,6 +173,7 @@ void doUpdateChannel() {
     brd.setAt2(MyInputs.ChannelNumber, MyInputs.AT2);
     brd.setAts(MyInputs.ChannelNumber, MyInputs.ATS);
     brd.setFEE(MyInputs.ChannelNumber, MyInputs.FEE);
+    brd.sendReg_all();
 }
 
 void doUpdateAllChannels() {
@@ -184,16 +185,17 @@ void doUpdateAllChannels() {
     brd.setAt2_all(MyInputs.AT2);
     brd.setAts_all(MyInputs.ATS);
     brd.setFEE_all(MyInputs.FEE);
-
-}
-
-void doSendToAllChannels() {
-
-    /* Send to All Channels triggered */
-    MySUI.println(F("Send to All Channels triggered!"));
     brd.sendReg_all();
 
 }
+
+// void doSendToAllChannels() {
+
+//     /* Send to All Channels triggered */
+//     MySUI.println(F("Send to All Channels triggered!"));
+//     brd.sendReg_all();
+
+// }
 
 
 /* *** Main Menu -> Advanced *** */
