@@ -67,7 +67,7 @@ void ARXsetting::setAt1(int channel, int setting){
 	*/
 
 	assert(channel < 9 && channel > 0);
-	assert(setting < 31 && setting > 0);
+	assert(setting < 31 && setting >= 0);
 
 	byte ans = getReg2(_CH(channel));
 	byte mask = 0xF0;
@@ -88,7 +88,7 @@ void ARXsetting::setAt2(int channel, int setting){
 	Bits in locations: 0x0000 1111 of register 2
 	*/
 	assert(channel < 9 && channel > 0);
-	assert(setting < 31 && setting > 0);
+	assert(setting < 31 && setting >= 0);
 
 	byte ans = getReg2(_CH(channel));
 	byte mask = 0x0F;
@@ -105,7 +105,7 @@ void ARXsetting::setAts(int channel, int setting){
 	Bits in locations: 0x0000 1111 of register 3
 	*/
 	assert(channel < 9 && channel > 0);
-	assert(setting < 31 && setting > 0);
+	assert(setting < 31 && setting >= 0);
 
 	byte ans = getReg3(_CH(channel));
 	byte mask = 0x0F;
@@ -119,7 +119,7 @@ void ARXsetting::setAt1_all(int setting){
 	/*
 	Set AT1 for all channels
 	*/
-	assert(setting < 31 && setting > 0);
+	assert(setting < 31 && setting >= 0);
 
 	for (int i = 1; i <= NCHAN; i++){
 		setAt1(i, setting);
@@ -130,7 +130,7 @@ void ARXsetting::setAt2_all(int setting){
 	/*
 	Set AT2 for all channels
 	*/
-	assert(setting < 31 && setting > 0);
+	assert(setting < 31 && setting >= 0);
 
 	for (int i = 1; i <= NCHAN; i++){
 		setAt2(i, setting);
@@ -141,7 +141,7 @@ void ARXsetting::setAts_all(int setting){
 	/*
 	Set ATS for all channels
 	*/
-	assert(setting < 31 && setting > 0);
+	assert(setting < 31 && setting >= 0);
 
 	for (int i = 1; i <= NCHAN; i++){
 		setAts(i, setting);
