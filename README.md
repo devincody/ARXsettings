@@ -2,7 +2,7 @@
 Version 2.1
 
 ### Purpose
-This project was developed specifically to assist in controlling a single 16-channel ARX board using Arduino.
+This project was developed as a debugging tool for the Owens Valley Radio Observatory (OVRO) [Long Wavelength Array (LWA)](http://www.tauceti.caltech.edu/LWA/). This code facilitates testing and control of a single 16-channel analog receiver (ARX) board with an Arduino library and GUI.
 
 The library abstracts away many complicated bit manipulations and allows the user to focus on operating the ARX board.
 
@@ -76,9 +76,6 @@ To further facilitate the use of this software, a simple graphic user interface 
 
 #### Why doesn't the IDE see my Arduino?
 There are many potential reasons for this and many reasons are discussed in depth elsewhere. For the Arduinos in the Weinreb lab, the reason *might* be that your computer doesn't yet have the driver required to use the CH34X serial-USB chip on these boards. Follow the download instructions on [this website](https://kig.re/2014/12/31/how-to-use-arduino-nano-mini-pro-with-CH340G-on-mac-osx-yosemite.html).
-
-#### Where is the GUI?
-The GUI has not yet been included with this github package. Future revisions will include the GUI.
 
 
 ### More Questions?
