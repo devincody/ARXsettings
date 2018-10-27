@@ -7,14 +7,14 @@ This project was developed specifically to assist in controlling a single 16-cha
 The library abstracts away many complicated bit manipulations and allows the user to focus on operating the ARX board.
 
 ### Give me the code!
+If you don't have it already, download the Arduino IDE [here](https://www.arduino.cc/en/Main/Software)
 
 Download the repository as a .zip file by clicking the green "Clone or Download" button in the upper righthand corner of the github homepage.
 
-If you don't have it already, download the Arduino IDE [here](https://www.arduino.cc/en/Main/Software)
+Open the Arduino IDE. Go to Sketch>Include Library>Add .ZIP Library. Browse to your download location and select the file you just downloaded.
 
-Open the Arduino IDE. Go to Sketch>Include Library>Add .ZIP Library. Browse to your download location and select your file.
+Follow the instructions on [this website](https://www.baldengineer.com/installing-arduino-library-from-github.html) if you still have quesitons about downloading the library.
 
-Follow the instructions on [this website](https://www.baldengineer.com/installing-arduino-library-from-github.html) if you still have quesitons.
 ### Overview
 
 Broadly speaking, the methods are split into three categories. The first category is for configuring a single ARX channel. The second is for configuring all ARX channels simultaneously and the last category is the initialization and execution methods.
@@ -62,6 +62,10 @@ Once the library is downloaded, you can find the examples in the Arduino IDE at:
 Open>libraries>ARXsettings
 
 Click on an example to open it. Once the example is open, the Arduino IDE will display the example code. Ensure that the code will be compiled for the correct board and the correct USB port is selected by choosing the correct options from the drop-down menus at Tools>Board: and Tools>Port. Finally compile and upload the code to Arduino using the right-arrow button in the upper-left corner of the Arduino IDE.
+
+### Graphic User Interface
+To further facilitate the use of this software, a simple graphic user interface is included. To operate the ARX board with the GUI, there are two required pieces of software. First is the GUI itself which is a software called [Device Druid](https://devicedruid.com/) and operated by Pat Deegan. If you are running Windows, this software can be downloaded from the Windows App store, otherwise, there is more information about obtaining this package on the Device Druid [Downloads Page](https://devicedruid.com/downloads/). The second piece of code comes with the Arduino
+
 
 ### FAQ\*
 
